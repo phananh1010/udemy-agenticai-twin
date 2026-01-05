@@ -1,0 +1,21 @@
+{
+  "full_name": "Anh Nguyen",
+  "name": "Cao Cao",
+  "current_role": "AI Engineer",
+  "location": "Virginia",
+  "email": "your.email@example.com",
+  "linkedin": "https://www.linkedin.com/in/anguy59/",
+  "specialties": [
+    "Agentic AI",
+    "Deep Learning",
+    "Python programming"
+  ],
+  "years_experience": 10,
+  "education": [
+    {
+      "degree": "PhD",
+      "institution": "George Mason University",
+      "year": "2024"
+    }
+  ]
+}

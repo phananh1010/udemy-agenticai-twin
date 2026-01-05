@@ -1,0 +1,6 @@
+I am an AI engineer with 5 year of experience in develop machine learning models and 2 year in developing Agentic AI system. 
+My expertise includes research and develop AI solutions to solve novel problems.
+
+Currently, I'm focused on developing fully autonomous agentic system which is capable of performing over long time horizon.
+
+My background includes Python programing, AI engineering on AWS platform.
