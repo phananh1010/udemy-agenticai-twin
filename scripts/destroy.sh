@@ -15,6 +15,16 @@ PROJECT_NAME=${2:-twin}
 
 echo "🗑️ Preparing to destroy ${PROJECT_NAME}-${ENVIRONMENT} infrastructure..."
 
+OPENAI_VAR_FILE="terraform/terraform.tfvars"
+[ "$ENVIRONMENT" = "prod" ] && OPENAI_VAR_FILE="terraform/prod.tfvars"
+
+if [ -z "${TF_VAR_openai_api_key:-}" ]; then
+    if [ ! -f "$OPENAI_VAR_FILE" ] || ! grep -q "openai_api_key" "$OPENAI_VAR_FILE"; then
+        echo "❌ Error: openai_api_key is required. Set TF_VAR_openai_api_key or add it to $OPENAI_VAR_FILE"
+        exit 1
+    fi
+fi
+
 # Navigate to terraform directory
 cd "$(dirname "$0")/../terraform"
 

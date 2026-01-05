@@ -18,8 +18,19 @@ PROJECT_NAME=${2:-twin}
 
 echo "Deploying ${PROJECT_NAME} to ${ENVIRONMENT}..."
 
-# 1. Build Lambda package
 cd "$(dirname "$0")/.."        # project root
+
+OPENAI_VAR_FILE="terraform/terraform.tfvars"
+[ "$ENVIRONMENT" = "prod" ] && OPENAI_VAR_FILE="terraform/prod.tfvars"
+
+if [ -z "${TF_VAR_openai_api_key:-}" ]; then
+  if [ ! -f "$OPENAI_VAR_FILE" ] || ! grep -q "openai_api_key" "$OPENAI_VAR_FILE"; then
+    echo "Error: openai_api_key is required. Set TF_VAR_openai_api_key or add it to $OPENAI_VAR_FILE"
+    exit 1
+  fi
+fi
+
+# 1. Build Lambda package
 echo "Building Lambda package..."
 (cd backend && uv run --active deploy.py)
 
